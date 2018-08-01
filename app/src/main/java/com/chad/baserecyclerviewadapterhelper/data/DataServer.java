@@ -3,6 +3,7 @@ package com.chad.baserecyclerviewadapterhelper.data;
 
 import com.chad.baserecyclerviewadapterhelper.entity.MultipleItem;
 import com.chad.baserecyclerviewadapterhelper.entity.MySection;
+import com.chad.baserecyclerviewadapterhelper.entity.NormalMultipleEntity;
 import com.chad.baserecyclerviewadapterhelper.entity.Status;
 import com.chad.baserecyclerviewadapterhelper.entity.Video;
 
@@ -16,6 +17,7 @@ public class DataServer {
 
     private static final String HTTPS_AVATARS1_GITHUBUSERCONTENT_COM_LINK = "https://avatars1.githubusercontent.com/u/7698209?v=3&s=460";
     private static final String CYM_CHAD = "CymChad";
+    private static final String CHAY_CHAN = "ChayChan";
 
     private DataServer() {
     }
@@ -85,21 +87,41 @@ public class DataServer {
 
     public static List<MultipleItem> getMultipleItemData() {
         List<MultipleItem> list = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            MultipleItem multipleItem = new MultipleItem();
-            String str = null;
-            multipleItem.setItemType(MultipleItem.IMG);
-            if (i % 2 == 0) {
-                str = CYM_CHAD;
-                multipleItem.setItemType(MultipleItem.TEXT);
-            } else if (i % 3 == 0) {
-                multipleItem.setItemType(MultipleItem.IMGS);
-            }
-            multipleItem.setContent(str);
-            list.add(multipleItem);
+        for (int i = 0; i <= 4; i++) {
+            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.IMG_SPAN_SIZE));
+            list.add(new MultipleItem(MultipleItem.TEXT, MultipleItem.TEXT_SPAN_SIZE, CYM_CHAD));
+            list.add(new MultipleItem(MultipleItem.IMG_TEXT, MultipleItem.IMG_TEXT_SPAN_SIZE));
+            list.add(new MultipleItem(MultipleItem.IMG_TEXT, MultipleItem.IMG_TEXT_SPAN_SIZE_MIN));
+            list.add(new MultipleItem(MultipleItem.IMG_TEXT, MultipleItem.IMG_TEXT_SPAN_SIZE_MIN));
+        }
+
+        return list;
+    }
+
+    public static List<NormalMultipleEntity> getNormalMultipleEntities() {
+        List<NormalMultipleEntity> list = new ArrayList<>();
+        for (int i = 0; i <= 4; i++) {
+            list.add(new NormalMultipleEntity(NormalMultipleEntity.SINGLE_IMG));
+            list.add(new NormalMultipleEntity(NormalMultipleEntity.SINGLE_TEXT,CHAY_CHAN));
+            list.add(new NormalMultipleEntity(NormalMultipleEntity.TEXT_IMG,CHAY_CHAN));
+            list.add(new NormalMultipleEntity(NormalMultipleEntity.TEXT_IMG,CYM_CHAD));
+            list.add(new NormalMultipleEntity(NormalMultipleEntity.TEXT_IMG,CHAY_CHAN));
         }
         return list;
     }
+
+//    public static List<MultipleItem> getMultipleChildView() {
+//        List<MultipleItem> list = new ArrayList<>();
+//        for (int i = 0; i <= 4; i++) {
+//            list.add(new ClickEntity(ClickEntity.CLICK_ITEM_VIEW, MultipleItem.TEXT_SPAN_SIZE, CYM_CHAD));
+//            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.BIG_IMG_SPAN_SIZE));
+//            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.IMG_SPAN_SIZE));
+//            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.IMG_SPAN_SIZE));
+//            list.add(new MultipleItem(MultipleItem.IMG, MultipleItem.IMG_SPAN_SIZE));
+//        }
+//
+//        return list;
+//    }
 
 
 }

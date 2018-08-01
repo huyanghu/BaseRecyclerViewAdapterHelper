@@ -11,14 +11,15 @@ import java.util.List;
 
 /**
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+ * modify by AllenCoder
  */
-public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<MultipleItem> {
+public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<MultipleItem, BaseViewHolder> {
 
     public MultipleItemQuickAdapter(Context context, List data) {
-        super( data);
+        super(data);
         addItemType(MultipleItem.TEXT, R.layout.item_text_view);
         addItemType(MultipleItem.IMG, R.layout.item_image_view);
-        addItemType(MultipleItem.IMGS, R.layout.item_image_views);
+        addItemType(MultipleItem.IMG_TEXT, R.layout.item_img_text_view);
     }
 
     @Override
@@ -27,11 +28,17 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<Multiple
             case MultipleItem.TEXT:
                 helper.setText(R.id.tv, item.getContent());
                 break;
-            case MultipleItem.IMG:
-                // set img data
-                break;
-            case MultipleItem.IMGS:
-                // set imgs data
+            case MultipleItem.IMG_TEXT:
+                switch (helper.getLayoutPosition() %
+                        2) {
+                    case 0:
+                        helper.setImageResource(R.id.iv, R.mipmap.animation_img1);
+                        break;
+                    case 1:
+                        helper.setImageResource(R.id.iv, R.mipmap.animation_img2);
+                        break;
+
+                }
                 break;
         }
     }
